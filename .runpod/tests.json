@@ -9,10 +9,7 @@
     }
   ],
   "config": {
-    "gpuTypeId": "NVIDIA A40",
-    "gpuCount": 1,
-    "allowedCudaVersions": [
-      "12.1"
-    ]
+    "gpuTypeId": "AMPERE_48",
+    "gpuCount": 1
   }
 }
