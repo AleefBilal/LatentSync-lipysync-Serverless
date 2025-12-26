@@ -1,0 +1,7 @@
+{
+  "input": {
+    "ref_video_path": "s3://messproof-staging/video_gen/wan2/latentsync_test.mp4",
+    "ref_audio_path": "s3://messproof-staging/video_gen/tts/7602b334-fcff-44ff-a274-abb70796fd12.wav",
+    "level": "stag"
+  }
+}

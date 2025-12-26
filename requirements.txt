@@ -22,6 +22,5 @@ insightface==0.7.3
 onnxruntime-gpu==1.21.0
 DeepCache==0.1.1
 boto3==1.34.122
-opencv-python==4.12.0.88
 python-dotenv==1.2.1
 runpod==1.6.2
