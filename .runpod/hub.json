@@ -1,0 +1,68 @@
+{
+  "title": "Latentsync lipsync",
+  "description": "Latentsync lipsync with request-level routing between staging and production S3 buckets",
+  "type": "serverless",
+  "category": "video",
+
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 50,
+
+    "env": [
+      {
+        "key": "STAG_AWS_ACCESS_KEY_ID",
+        "input": {
+          "name": "Staging AWS Access Key",
+          "type": "string",
+          "secret": true
+        }
+      },
+      {
+        "key": "STAG_AWS_SECRET_ACCESS_KEY",
+        "input": {
+          "name": "Staging AWS Secret Key",
+          "type": "string",
+          "secret": true
+        }
+      },
+      {
+        "key": "STAG_S3_BUCKET",
+        "input": {
+          "name": "Staging S3 Bucket",
+          "type": "string",
+          "description": "S3 bucket for staging outputs"
+        }
+      },
+
+      {
+        "key": "PROD_AWS_ACCESS_KEY_ID",
+        "input": {
+          "name": "Production AWS Access Key",
+          "type": "string",
+          "secret": true
+        }
+      },
+      {
+        "key": "PROD_AWS_SECRET_ACCESS_KEY",
+        "input": {
+          "name": "Production AWS Secret Key",
+          "type": "string",
+          "secret": true
+        }
+      },
+      {
+        "key": "PROD_S3_BUCKET",
+        "input": {
+          "name": "Production S3 Bucket",
+          "type": "string",
+          "description": "S3 bucket for production outputs"
+        }
+      },
+
+      {
+        "key": "AWS_REGION",
+        "value": "us-east-2"
+      }
+    ]
+  }
+}

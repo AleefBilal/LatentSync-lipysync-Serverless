@@ -1,0 +1,18 @@
+{
+  "tests": [
+    {
+      "name": "info_mode_test",
+      "input": {
+        "aleef": true
+      },
+      "timeout": 20000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA A40",
+    "gpuCount": 1,
+    "allowedCudaVersions": [
+      "12.1"
+    ]
+  }
+}
