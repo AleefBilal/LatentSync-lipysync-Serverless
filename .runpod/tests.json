@@ -9,7 +9,6 @@
     }
   ],
   "config": {
-    "gpuTypeId": "AMPERE_48",
-    "gpuCount": 1
+    "gpuTypeId": "NONE"
   }
 }
