@@ -44,10 +44,19 @@ COPY . .
 # clone latentsync
 RUN git clone https://github.com/bytedance/LatentSync.git
 
+RUN apt-get update && apt-get install -y wget unzip
+
+RUN mkdir -p checkpoints/auxiliary/models/buffalo_l && \
+    wget -O checkpoints/auxiliary/models/buffalo_l.zip \
+      https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip && \
+    unzip checkpoints/auxiliary/models/buffalo_l.zip -d checkpoints/auxiliary/models/buffalo_l && \
+    rm checkpoints/auxiliary/models/buffalo_l.zip
+
+
 WORKDIR /app/LatentSync
 
 # Pre-download checkpoints
-RUN mkdir -p /app/checkpoints/whisper
+RUN mkdir -p /app/LatentSync/checkpoints/whisper
 
 RUN huggingface-cli download ByteDance/LatentSync-1.6 \
     latentsync_unet.pt \
@@ -60,12 +69,11 @@ RUN huggingface-cli download ByteDance/LatentSync-1.6 \
     --local-dir-use-symlinks False
 
 # Pre-download VAE
-RUN python3 - <<EOF
-from diffusers import AutoencoderKL
-AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse")
-EOF
-
 WORKDIR /app
+
+RUN python3 pre_model.py
+
+ENV PYTHONPATH="/app/LatentSync:${PYTHONPATH}"
 
 # Runtime command
 CMD ["python3", "app.py"]

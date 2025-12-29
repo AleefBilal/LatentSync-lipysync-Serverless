@@ -9,7 +9,7 @@ from pathlib import Path
 from utils.s3 import download_file, upload_file
 from utils.utllity import (
     load_environment,
-    reset_runtime_env,
+    # reset_runtime_env,
     classify_env,
 )
 from utils.video import load_pipe, generate_lipsync
@@ -19,12 +19,26 @@ logging.basicConfig(level=logging.INFO)
 _ = load_pipe()  # preload LatentSync
 SEED = 1247
 
+#
+# {'audio_path': '/tmp/gradio/f7cea5bc5d5cdcb1b52c41b4d0ff989db4b4715eed24ce9b93f85546c228a206/lat_test.wav',
+#  'guidance_scale': 1.5,
+#  'height': 512,
+#  'mask_image_path': 'latentsync/utils/mask.png',
+#  'num_frames': 16,
+#  'num_inference_steps': 20,
+#  'temp_dir': 'temp',
+#  'video_out_path': 'temp/lat_test_20251229_065029.mp4',
+#  'video_path': '/tmp/gradio/64ee7ec252063808ecff8d77193e7eb8d33b1a8c3eebc223b89cd68ba0cf7d5c/lat_test.mp4',
+#  'weight_dtype': 'torch.float16',
+#  'width': 512}
+
+
 
 def handler(event):
     workdir = None
 
     try:
-        reset_runtime_env()
+        # reset_runtime_env()
         inp = event["input"]
 
         # ---- Info mode ----
@@ -47,6 +61,8 @@ def handler(event):
                 load_environment(level)
             except Exception:
                 load_environment()  # default
+        else:
+            load_environment(level)
 
         # ---- Working directory ----
         workdir = Path("/tmp") / str(uuid.uuid4())
@@ -91,3 +107,5 @@ def handler(event):
 
 
 runpod.serverless.start({"handler": handler})
+
+
